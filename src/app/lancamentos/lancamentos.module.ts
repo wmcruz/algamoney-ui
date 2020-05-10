@@ -1,7 +1,9 @@
-import { FormsModule } from '@angular/forms';
+// Angular
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+// Terceiros
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
@@ -12,15 +14,20 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
+// Projeto-Interno
+import { SharedModule } from './../shared/shared.module';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 @NgModule({
   imports: [
+    // Angular
     CommonModule,
     FormsModule,
-
+    // Projeto-Interno
+    SharedModule,
+    // Terceiros
     ButtonModule,
     CalendarModule,
     CurrencyMaskModule,

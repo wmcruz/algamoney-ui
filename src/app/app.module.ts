@@ -8,13 +8,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MessageComponent } from './message/message.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessageComponent,
     NavbarComponent
   ],
   imports: [

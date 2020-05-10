@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 // Projeto-Interno
+import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
@@ -21,6 +22,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     // Angular
     CommonModule,
     FormsModule,
+    // Projeto-Interno
+    SharedModule,
     // Terceiros
     ButtonModule,
     CurrencyMaskModule,
