@@ -7,13 +7,12 @@ import { NgModule } from '@angular/core';
 // Projeto-Interno
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { NavbarComponent } from './navbar/navbar.component';
+import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     // Angular
@@ -22,6 +21,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
     FormsModule,
     // Projeto-Interno
     LancamentosModule,
+    CoreModule,
     PessoasModule
   ],
   providers: [],
