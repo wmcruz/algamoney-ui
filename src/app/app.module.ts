@@ -16,24 +16,26 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { AppComponent } from './app.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { MessageComponent } from './message/message.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { MessageComponent } from './message/message.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LancamentosPesquisaComponent,
-    NavbarComponent,
-    PessoasPesquisaComponent,
     LancamentoCadastroComponent,
+    LancamentosGridComponent,
+    LancamentosPesquisaComponent,
+    PessoasPesquisaComponent,
+    PessoasGridComponent,
     PessoaCadastroComponent,
     MessageComponent,
-    LancamentosGridComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +47,10 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     DropdownModule,
     FormsModule,
     InputTextModule,
+    InputMaskModule,
     InputTextareaModule,
     SelectButtonModule,
-    TooltipModule,
-    InputMaskModule
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
