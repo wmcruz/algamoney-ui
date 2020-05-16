@@ -1,12 +1,13 @@
 // Angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 // Projeto-Interno
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
+import { LancamentoService } from './lancamentos/lancamento.service';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
@@ -18,13 +19,13 @@ import { PessoasModule } from './pessoas/pessoas.module';
     // Angular
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
+    HttpModule,
     // Projeto-Interno
     LancamentosModule,
     CoreModule,
     PessoasModule
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
