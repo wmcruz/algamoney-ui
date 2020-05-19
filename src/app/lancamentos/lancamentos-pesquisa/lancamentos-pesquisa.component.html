@@ -7,15 +7,15 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="descricao">
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
       </div>
 
       <div class="ui-g-12">
         <label style="display: block">Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"></p-calendar>
 
         <label>até</label>
-        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoFim" [(ngModel)]="dataVencimentoFim"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoFim" [(ngModel)]="filtro.dataVencimentoFim"></p-calendar>
       </div>
 
       <div class="ui-g-12">
@@ -26,7 +26,37 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <app-lancamentos-grid [lancamentos]="lancamentos"></app-lancamentos-grid>
+      <p-dataTable [value]="lancamentos" [responsive]="true" emptyMessage="Nenhum lançamento encontrado"
+        [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+        <p-column header="Pessoa" field="pessoa" ></p-column>
+
+        <p-column header="Descrição" field="descricao"></p-column>
+
+        <p-column header="Vencimento" styleClass="col-data">
+          <ng-template pTemplate="body" let-venc="rowData">
+            <span> {{ venc.dataVencimento | date:'dd/MM/y' }} </span>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Pagamento" styleClass="col-data">
+          <ng-template pTemplate="body" let-pag="rowData">
+            <span> {{ pag.dataPagamento | date:'dd/MM/y' }} </span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="valor" header="Valor" styleClass="col-valor">
+          <ng-template pTemplate="body" let-lanc="rowData">
+            <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor | number:'1.2-2'}}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Ações" styleClass="col-acoes">
+          <ng-template pTemplate="body">
+            <a pButton pTooltip="Editar" tooltipPosition="top" icon="fa-pencil"></a>
+            <button pButton pTooltip="Excluir" tooltipPosition="top" icon="fa-trash"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
     </div>
   </div>
 
