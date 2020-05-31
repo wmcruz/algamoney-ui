@@ -6,10 +6,11 @@ import { HttpModule } from '@angular/http';
 
 // Projeto-Interno
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { LancamentoService } from './lancamentos/lancamento.service';
-import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { PessoasService } from './pessoas/pessoas.service';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,11 @@ import { PessoasModule } from './pessoas/pessoas.module';
     BrowserAnimationsModule,
     HttpModule,
     // Projeto-Interno
-    LancamentosModule,
     CoreModule,
+    LancamentosModule,
     PessoasModule
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService, PessoasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
