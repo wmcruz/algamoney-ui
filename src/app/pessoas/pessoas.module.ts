@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 
 // Terceiros
 import { ButtonModule } from 'primeng/components/button/button';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -25,7 +24,6 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     SharedModule,
     // Terceiros
     ButtonModule,
-    CurrencyMaskModule,
     DataTableModule,
     InputTextModule,
     InputMaskModule,
