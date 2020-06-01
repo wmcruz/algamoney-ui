@@ -43,7 +43,7 @@ export class LancamentosPesquisaComponent implements OnInit {
       this.totalRegistros = resultado.total;
       this.lancamentos = resultado.lancamentos;
     })
-    .catch(erro => this.errorHandle.heandle(erro));
+    .catch(erro => this.errorHandle.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -71,6 +71,6 @@ export class LancamentosPesquisaComponent implements OnInit {
 
       this.toasty.success('Lançamento excluído com sucesso.')
     })
-    .catch(erro => this.errorHandle.heandle(erro))
+    .catch(erro => this.errorHandle.handle(erro))
   }
 }
