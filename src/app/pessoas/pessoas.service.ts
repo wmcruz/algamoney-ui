@@ -11,16 +11,20 @@ export class PessoaFiltro {
 
 @Injectable()
 export class PessoasService {
-
+  // Atibutos
   pessoasUrl = 'http://localhost:8080/pessoas';
+  // tslint:disable-next-line: max-line-length
+  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkxMDEwNzM1LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJjMTk4NjU3Ni05NjRkLTQ2NmItYjg3NS1iMzhmYTU4MzY3MDQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.wSvvJx4sQHXXsdjQqnXmqIeCDNDsj7yoTUHsfSYOzWc';
 
+  // Construtor
   constructor(private http: Http) { }
 
+  // Metodo de pesquisa de pessoas com filtro ou sem filtro
   pesquisar(filtro: PessoaFiltro): Promise<any> {
     const params = new URLSearchParams();
     const headers = new Headers();
-    // tslint:disable-next-line: max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkwOTcyOTEyLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZWE3N2Q4Ni1kZGEyLTRjYjUtODM0ZS0xZDg3MDFlNWIxYjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Al6wT02n3skYOrxIxdBKL9U0Vk5TJLcg_0OOvb3FHAA');
+
+    headers.append('Authorization', this.tokenBearer);
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -44,6 +48,7 @@ export class PessoasService {
       })
   }
 
+  // Metodo para listar todas as pessoas
   listarTodas(): Promise<any> {
     const headers = new Headers();
     headers.append('Authorization', 'Bearer ');
@@ -56,10 +61,20 @@ export class PessoasService {
   // serviço para excluir pessoa
   excluir(codigo: number): Promise<void> {
     const headers = new Headers();
-    // tslint:disable-next-line: max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkwOTcyOTEyLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZWE3N2Q4Ni1kZGEyLTRjYjUtODM0ZS0xZDg3MDFlNWIxYjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Al6wT02n3skYOrxIxdBKL9U0Vk5TJLcg_0OOvb3FHAA');
+    headers.append('Authorization', this.tokenBearer);
 
     return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
+  }
+
+  // metodo para mudar status da pessoa
+  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+    const headers = new Headers();
+    headers.append('Authorization', this.tokenBearer);
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
   }

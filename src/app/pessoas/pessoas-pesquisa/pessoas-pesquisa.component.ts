@@ -28,8 +28,7 @@ export class PessoasPesquisaComponent implements OnInit {
     private confirmation: ConfirmationService,
     private errorHandle: ErrorHandlerService) { }
 
-    ngOnInit(): void {
-  }
+    ngOnInit(): void { }
 
   // metodo de pesquisa de pessoas
   pesquisar(pagina = 0) {
@@ -73,4 +72,17 @@ export class PessoasPesquisaComponent implements OnInit {
     })
     .catch(erro => this.errorHandle.handle(erro));
   }
-}
+
+  // metodo para mudar status da pessoa
+  mudarStatus(pessoa: any) {
+    const novoStatus = !pessoa.ativo;
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus)
+    .then(() => {
+      const acao = novoStatus ? 'ativada' : 'desativada';
+
+      pessoa.ativo = novoStatus;
+      this.toasty.success(`Pessoa ${acao} com sucesso!`);
+    })
+    .catch(erro => { this.errorHandle.handle(erro) });
+  }
+ }
