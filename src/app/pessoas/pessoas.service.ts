@@ -20,7 +20,7 @@ export class PessoasService {
     const params = new URLSearchParams();
     const headers = new Headers();
     // tslint:disable-next-line: max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCJdLCJub21lIjoiQWRtaW5pc3RyYWRvciIsImV4cCI6MTU5MDk1OTAzNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DQURBU1RSQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIiwiUk9MRV9SRU1PVkVSX1BFU1NPQSIsIlJPTEVfQ0FEQVNUUkFSX0xBTkNBTUVOVE8iLCJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9SRU1PVkVSX0xBTkNBTUVOVE8iLCJST0xFX0NBREFTVFJBUl9QRVNTT0EiLCJST0xFX1BFU1FVSVNBUl9DQVRFR09SSUEiXSwianRpIjoiNDNkYTMzNzgtYjMwNS00NmQzLWFiNjMtYTdiNTlmOWUzNWVlIiwiY2xpZW50X2lkIjoibW9iaWxlIn0.W8jDFpXN-Lc6dt9BcLmI46qtdoyx8Zfg6ZaWg98ta7s');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkwOTcyOTEyLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZWE3N2Q4Ni1kZGEyLTRjYjUtODM0ZS0xZDg3MDFlNWIxYjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Al6wT02n3skYOrxIxdBKL9U0Vk5TJLcg_0OOvb3FHAA');
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -51,5 +51,16 @@ export class PessoasService {
     return this.http.get(this.pessoasUrl, { headers })
       .toPromise()
       .then(response => response.json().content);
+  }
+
+  // serviço para excluir pessoa
+  excluir(codigo: number): Promise<void> {
+    const headers = new Headers();
+    // tslint:disable-next-line: max-line-length
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkwOTcyOTEyLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZWE3N2Q4Ni1kZGEyLTRjYjUtODM0ZS0xZDg3MDFlNWIxYjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Al6wT02n3skYOrxIxdBKL9U0Vk5TJLcg_0OOvb3FHAA');
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
   }
 }
