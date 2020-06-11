@@ -14,7 +14,7 @@ export class PessoasService {
   // Atibutos
   pessoasUrl = 'http://localhost:8080/pessoas';
   // tslint:disable-next-line: max-line-length
-  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkxMDEwNzM1LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJjMTk4NjU3Ni05NjRkLTQ2NmItYjg3NS1iMzhmYTU4MzY3MDQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.wSvvJx4sQHXXsdjQqnXmqIeCDNDsj7yoTUHsfSYOzWc';
+  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkxODM4NTAzLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJiMDEzYjNmMC0wYTg0LTQ5ODMtYWNiMS05Y2FlZDY3NjQyODMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.j8tIfrJwL0qgOlyYGrFA37Ql2TP88akA7ox-2Au3tyg';
 
   // Construtor
   constructor(private http: Http) { }
@@ -51,7 +51,7 @@ export class PessoasService {
   // Metodo para listar todas as pessoas
   listarTodas(): Promise<any> {
     const headers = new Headers();
-    headers.append('Authorization', 'Bearer ');
+    headers.append('Authorization', this.tokenBearer);
 
     return this.http.get(this.pessoasUrl, { headers })
       .toPromise()
