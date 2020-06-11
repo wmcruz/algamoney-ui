@@ -12,6 +12,7 @@ import { PessoasService } from 'app/pessoas/pessoas.service';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ToastyModule } from 'ng2-toasty';
+import { CategoriaService } from 'app/categorias/categoria.service';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ToastyModule } from 'ng2-toasty';
     ErrorHandlerService,
     LancamentoService,
     PessoasService,
+    CategoriaService,
     ConfirmationService, {provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
