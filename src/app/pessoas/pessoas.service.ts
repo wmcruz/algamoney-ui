@@ -1,8 +1,14 @@
+// Angular
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers } from '@angular/http';
 
+// Projeto-Interno
+import { Pessoa } from 'app/core/model';
+
+// Terceiros
 import 'rxjs/add/operator/toPromise';
 
+// Classe de Filtro para pessoa
 export class PessoaFiltro {
   nome: string;
   pagina = 0;
@@ -14,7 +20,7 @@ export class PessoasService {
   // Atibutos
   pessoasUrl = 'http://localhost:8080/pessoas';
   // tslint:disable-next-line: max-line-length
-  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkxODQzMzUxLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxMTZhZmM0Ni1kYTAwLTRlOGEtYWRjMC0zYWVkMTIzNTliNWUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.pyCEuxzcDef2Zq75_esen8cVL7rxD8WwfjcCUp2yOK0';
+  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkyMjY3ODM2LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI2YjlmMGNmYy1kZDBkLTQ2ODAtOWJhZS1jNWJkNDU2ZjI1NmYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.PwP9acQotE7ta5oIshHj_tvfAT5jnx_QOeQ_XrF04r8';
 
   // Construtor
   constructor(private http: Http) { }
@@ -68,7 +74,7 @@ export class PessoasService {
     .then(() => null);
   }
 
-  // metodo para mudar status da pessoa
+  // serviço para mudar status da pessoa
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
     const headers = new Headers();
     headers.append('Authorization', this.tokenBearer);
@@ -77,5 +83,16 @@ export class PessoasService {
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
+  }
+
+  // serviço responsável por adicionar uma nova pessoa
+  adicionar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', this.tokenBearer);
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+    .toPromise()
+    .then(response => response.json());
   }
 }
