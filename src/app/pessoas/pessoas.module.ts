@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 // Terceiros
 import { ButtonModule } from 'primeng/components/button/button';
@@ -20,6 +21,7 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     // Angular
     CommonModule,
     FormsModule,
+    RouterModule,
     // Projeto-Interno
     SharedModule,
     // Terceiros

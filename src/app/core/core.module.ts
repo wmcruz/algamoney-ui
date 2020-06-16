@@ -1,6 +1,7 @@
 // Angular
 import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 // Projeto-Interno
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +18,7 @@ import { CategoriaService } from 'app/categorias/categoria.service';
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
      // Terceiros
      ToastyModule.forRoot(),
      ConfirmDialogModule
