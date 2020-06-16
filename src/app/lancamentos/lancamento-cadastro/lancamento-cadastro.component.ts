@@ -11,6 +11,7 @@ import { LancamentoService } from '../lancamento.service';
 
 // Terceiros
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -34,9 +35,11 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoasService,
     private lancamentoService: LancamentoService,
     private toastyService: ToastyService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.params['codigo']);
     this.carregarCategorias();
     this.carregarPessoas();
   }
