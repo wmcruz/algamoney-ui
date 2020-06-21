@@ -20,7 +20,7 @@ export class PessoasService {
   // Atibutos
   pessoasUrl = 'http://localhost:8080/pessoas';
   // tslint:disable-next-line: max-line-length
-  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkyMjY3ODM2LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI2YjlmMGNmYy1kZDBkLTQ2ODAtOWJhZS1jNWJkNDU2ZjI1NmYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.PwP9acQotE7ta5oIshHj_tvfAT5jnx_QOeQ_XrF04r8';
+  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkyNzgwNTgzLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJmMTU3OTZkZC00ZDgzLTQ4ZTMtYjYyOC04MTZkMzYzNzhlYTYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.9Eh2651-svWrUtXsh_v9fJWUHvSDOD1VR5bTdGXkDSE';
 
   // Construtor
   constructor(private http: Http) { }
@@ -94,5 +94,32 @@ export class PessoasService {
     return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
     .toPromise()
     .then(response => response.json());
+  }
+
+  /**
+   * Método responsável por atualizar pessoa
+   * @param pessoa
+   */
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', this.tokenBearer);
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, JSON.stringify(pessoa), { headers })
+    .toPromise()
+    .then(response => response.json() as Pessoa)
+  }
+
+  /**
+   * Método responsável por pesquisar pessoa por código
+   * @param codigo
+   */
+  buscarPorCodigo(codigo: number): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', this.tokenBearer);
+
+    return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+    .toPromise()
+    .then(response => response.json() as Pessoa);
   }
 }

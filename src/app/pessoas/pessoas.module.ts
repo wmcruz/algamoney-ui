@@ -2,7 +2,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 // Terceiros
 import { ButtonModule } from 'primeng/components/button/button';
@@ -15,15 +14,16 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 @NgModule({
   imports: [
     // Angular
     CommonModule,
     FormsModule,
-    RouterModule,
     // Projeto-Interno
     SharedModule,
+    PessoasRoutingModule,
     // Terceiros
     ButtonModule,
     DataTableModule,

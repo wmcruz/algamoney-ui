@@ -32,7 +32,7 @@
         </p-column>
         <p-column header="Ações" styleClass="col-acoes">
           <ng-template pTemplate="body" let-pes="rowData">
-            <a pButton pTooltip="Editar" tooltipPosition="top" icon="fa fa-pencil"></a>
+            <a pButton pTooltip="Editar" tooltipPosition="top" icon="fa fa-pencil" [routerLink]="['/pessoas', pes.codigo]"></a>
             <button pButton pTooltip="Excluir" tooltipPosition="top" icon="fa fa-trash" (click)="confirmarExclusao(pes)"></button>
           </ng-template>
         </p-column>
@@ -41,6 +41,6 @@
   </div>
 
   <div class="ui-g-12">
-    <button pButton pTooltip="Criar uma nova pessoa" tooltipPosition="right" label="Nova Pessoa" routerLink="/pessoas/novo"></button>
+    <a pButton pTooltip="Criar uma nova pessoa" tooltipPosition="right" label="Nova Pessoa" routerLink="/pessoas/nova"></a>
   </div>
 </div>
