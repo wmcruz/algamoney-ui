@@ -104,7 +104,7 @@ export class LancamentoService {
    * Método responsavel por pesquisar um lancamento pelo código
    * @param codigo
    */
-  buscarPoCodigo(codigo: number): Promise<Lancamento> {
+  buscarPorCodigo(codigo: number): Promise<Lancamento> {
     const headers = new Headers();
     headers.append('Authorization', this.tokenBearer);
 
