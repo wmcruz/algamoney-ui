@@ -11,7 +11,7 @@ import { LancamentoService } from '../lancamento.service';
 
 // Terceiros
 import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -36,7 +36,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toastyService: ToastyService,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     const codigoLancamento = this.route.snapshot.params['codigo'];
@@ -62,10 +63,29 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.adicionar(this.lancamento)
-    .then(() => {
-      this.toastyService.success('Lançamento adicionando com sucesso!')
-      form.reset();
+    .then(lancamentoAdicionado => {
+      this.toastyService.success('Lançamento adicionado com sucesso!')
+      // form.reset();
+      this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo]);
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+    .then(lancamento => {
+      this.lancamento = lancamento;
+
+      this.toastyService.success('Lancamento alterado com sucesso!');
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
@@ -84,5 +104,16 @@ export class LancamentoCadastroComponent implements OnInit {
       this.pessoas = pessoas.map(p => ({label: p.nome, value: p.codigo }));
     })
     .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    // gambiarra do javascript
+    setTimeout(function() {
+      this.lancamento = new Lancamento();
+    }.bind(this), 1);
+
+    this.router.navigate(['/lancamentos/novo']);
   }
 }
