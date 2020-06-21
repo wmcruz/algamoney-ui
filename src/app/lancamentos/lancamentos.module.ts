@@ -18,16 +18,16 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { SharedModule } from './../shared/shared.module';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 @NgModule({
   imports: [
     // Angular
     CommonModule,
     FormsModule,
-    RouterModule,
     // Projeto-Interno
     SharedModule,
+    LancamentosRoutingModule,
     // Terceiros
     ButtonModule,
     CalendarModule,
