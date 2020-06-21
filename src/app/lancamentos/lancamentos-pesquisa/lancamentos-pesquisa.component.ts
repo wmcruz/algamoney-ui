@@ -9,6 +9,7 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -27,11 +28,12 @@ export class LancamentosPesquisaComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private errorHandle: ErrorHandlerService) { }
+    private errorHandle: ErrorHandlerService,
+    private title: Title) { }
 
   // init
   ngOnInit() {
-    // this.pesquisar();
+    this.title.setTitle('Pesquisa de Lançamentos');
   }
 
   // metodo de pesquisa de lancamentos

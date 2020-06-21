@@ -15,6 +15,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { ToastyModule } from 'ng2-toasty';
 import { CategoriaService } from 'app/categorias/categoria.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     LancamentoService,
     PessoasService,
     CategoriaService,
+    Title,
     ConfirmationService, {provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
