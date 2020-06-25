@@ -11,8 +11,7 @@ export class AuthService {
   jwtPayload: any;
 
   constructor(private http: Http,
-    private jwtHelper: JwtHelper)
-    {
+    private jwtHelper: JwtHelper) {
       this.carregarToken();
     }
 
