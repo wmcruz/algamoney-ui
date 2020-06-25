@@ -1,12 +1,13 @@
 // Angular
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Headers } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 
 // Projeto-Interno
 import { Pessoa } from 'app/core/model';
 
 // Terceiros
 import 'rxjs/add/operator/toPromise';
+import { AuthHttp } from 'angular2-jwt';
 
 // Classe de Filtro para pessoa
 export class PessoaFiltro {
@@ -19,18 +20,13 @@ export class PessoaFiltro {
 export class PessoasService {
   // Atibutos
   pessoasUrl = 'http://localhost:8080/pessoas';
-  // tslint:disable-next-line: max-line-length
-  tokenBearer = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTkyNzgwNTgzLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJmMTU3OTZkZC00ZDgzLTQ4ZTMtYjYyOC04MTZkMzYzNzhlYTYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.9Eh2651-svWrUtXsh_v9fJWUHvSDOD1VR5bTdGXkDSE';
 
   // Construtor
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   // Metodo de pesquisa de pessoas com filtro ou sem filtro
   pesquisar(filtro: PessoaFiltro): Promise<any> {
     const params = new URLSearchParams();
-    const headers = new Headers();
-
-    headers.append('Authorization', this.tokenBearer);
 
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
@@ -39,7 +35,7 @@ export class PessoasService {
       params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoasUrl}`, { headers, search: params })
+    return this.http.get(`${this.pessoasUrl}`, { search: params })
       .toPromise()
       .then(response => {
         const responseJson  = response.json();
@@ -56,42 +52,28 @@ export class PessoasService {
 
   // Metodo para listar todas as pessoas
   listarTodas(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-
-    return this.http.get(this.pessoasUrl, { headers })
+    return this.http.get(this.pessoasUrl)
       .toPromise()
       .then(response => response.json().content);
   }
 
   // serviço para excluir pessoa
   excluir(codigo: number): Promise<void> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-
-    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`)
     .toPromise()
     .then(() => null);
   }
 
   // serviço para mudar status da pessoa
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo)
     .toPromise()
     .then(() => null);
   }
 
   // serviço responsável por adicionar uma nova pessoa
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa))
     .toPromise()
     .then(response => response.json());
   }
@@ -101,11 +83,7 @@ export class PessoasService {
    * @param pessoa
    */
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, JSON.stringify(pessoa), { headers })
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, JSON.stringify(pessoa))
     .toPromise()
     .then(response => response.json() as Pessoa)
   }
@@ -115,10 +93,7 @@ export class PessoasService {
    * @param codigo
    */
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
-    const headers = new Headers();
-    headers.append('Authorization', this.tokenBearer);
-
-    return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.get(`${this.pessoasUrl}/${codigo}`)
     .toPromise()
     .then(response => response.json() as Pessoa);
   }
