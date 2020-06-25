@@ -16,6 +16,7 @@ import { ToastyModule } from 'ng2-toasty';
 import { CategoriaService } from 'app/categorias/categoria.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'app/seguranca/auth.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { Title } from '@angular/platform-browser';
     LancamentoService,
     PessoasService,
     CategoriaService,
+    AuthService,
     Title,
     ConfirmationService, {provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
