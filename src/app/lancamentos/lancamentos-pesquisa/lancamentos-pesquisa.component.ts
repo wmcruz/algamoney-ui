@@ -1,15 +1,16 @@
 // Angular
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 // Projeto-Interno
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
+import { AuthService } from 'app/seguranca/auth.service';
 
 // Terceiros
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/api';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -26,6 +27,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   // construtor
   constructor(
     private lancamentoService: LancamentoService,
+    private auth: AuthService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandle: ErrorHandlerService,
