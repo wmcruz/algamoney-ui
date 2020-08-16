@@ -10,7 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
-import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -32,7 +32,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     ButtonModule,
     CalendarModule,
     CurrencyMaskModule,
-    DataTableModule,
+    TableModule,
     DropdownModule,
     InputTextModule,
     InputTextareaModule,

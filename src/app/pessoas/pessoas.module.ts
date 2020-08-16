@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 // Terceiros
 import { ButtonModule } from 'primeng/button';
-import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
@@ -26,7 +26,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     PessoasRoutingModule,
     // Terceiros
     ButtonModule,
-    DataTableModule,
+    TableModule,
     InputTextModule,
     InputMaskModule,
     TooltipModule
