@@ -10,8 +10,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
 
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
-import { ButtonModule } from 'primeng/components/button/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 export function authHttpServiceFactory (auth: AuthService, http: Http, options: RequestOptions) {

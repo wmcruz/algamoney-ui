@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // Terceiros
-import { ButtonModule } from 'primeng/components/button/button';
-import { DataTableModule } from 'primeng/components/datatable/datatable';
-import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
-import { TooltipModule } from 'primeng/components/tooltip/tooltip';
+import { ButtonModule } from 'primeng/button';
+import { DataTableModule } from 'primeng/datatable';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 
 // Projeto-Interno
 import { SharedModule } from './../shared/shared.module';
