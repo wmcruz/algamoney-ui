@@ -1,6 +1,6 @@
 // Angular
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // Terceiros
@@ -25,6 +25,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     // Angular
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     // Projeto-Interno
     SharedModule,
     LancamentosRoutingModule,

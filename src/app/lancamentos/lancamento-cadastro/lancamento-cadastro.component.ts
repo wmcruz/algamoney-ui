@@ -1,6 +1,8 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Projeto-Interno
 import { CategoriaService } from 'app/categorias/categoria.service';
@@ -11,8 +13,6 @@ import { LancamentoService } from '../lancamento.service';
 
 // Terceiros
 import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -29,6 +29,7 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias = [];
   pessoas = [];
   lancamento = new Lancamento();
+  formulario: FormGroup;
 
   // Construtor
   constructor(
@@ -39,9 +40,11 @@ export class LancamentoCadastroComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
     private router: Router,
-    private title: Title) { }
+    private title: Title,
+    private formBuilder: FormBuilder ) { }
 
   ngOnInit() {
+    this.configurarFormulario();
     this.title.setTitle('Novo Lançamento');
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
@@ -53,29 +56,50 @@ export class LancamentoCadastroComponent implements OnInit {
     this.carregarPessoas();
   }
 
+  configurarFormulario() {
+    this.formulario = this.formBuilder.group({
+      codigo: [],
+      tipo: [ 'RECEITA', Validators.required ],
+      dataVencimento: [ null, Validators.required ],
+      dataPagamento: [],
+      descricao: [ null, [ Validators.required, Validators.minLength(5) ]],
+      valor: [ null, Validators.required ],
+      pessoa: this.formBuilder.group({
+        codigo: [ null, Validators.required ],
+        nome: []
+      }),
+      categoria: this.formBuilder.group({
+        codigo: [ null, Validators.required ],
+        nome: []
+      }) ,
+      observacao: [],
+    });
+  }
+
   carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo)
     .then(lancamento => {
-      this.lancamento = lancamento;
+      // this.lancamento = lancamento;
+      this.formulario.patchValue(lancamento);
       this.atualizarTituloEdicao();
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
 
   get editando() {
-    return Boolean (this.lancamento.codigo);
+    return Boolean (this.formulario.get('codigo').value);
   }
 
-  salvar(form: FormControl) {
+  salvar() {
     if (this.editando) {
-      this.atualizarLancamento(form);
+      this.atualizarLancamento();
     } else {
-      this.adicionarLancamento(form);
+      this.adicionarLancamento();
     }
   }
 
-  adicionarLancamento(form: FormControl) {
-    this.lancamentoService.adicionar(this.lancamento)
+  adicionarLancamento() {
+    this.lancamentoService.adicionar(this.formulario.value)
     .then(lancamentoAdicionado => {
       this.toastyService.success('Lançamento adicionado com sucesso!')
       // form.reset();
@@ -84,10 +108,11 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizarLancamento(form: FormControl) {
-    this.lancamentoService.atualizar(this.lancamento)
+  atualizarLancamento() {
+    this.lancamentoService.atualizar(this.formulario.value)
     .then(lancamento => {
-      this.lancamento = lancamento;
+      // this.lancamento = lancamento;
+      this.formulario.patchValue(lancamento);
 
       this.toastyService.success('Lancamento alterado com sucesso!');
       this.atualizarTituloEdicao();
@@ -111,8 +136,8 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handle(erro));
   }
 
-  novo(form: FormControl) {
-    form.reset();
+  novo() {
+    this.formulario.reset();
 
     // gambiarra do javascript
     setTimeout(function() {
@@ -123,6 +148,6 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   atualizarTituloEdicao() {
-    this.title.setTitle(`Edição de laçamento: ${this.lancamento.descricao}`);
+    this.title.setTitle(`Edição de laçamento: ${this.formulario.get('descricao').value}`);
   }
 }
