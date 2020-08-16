@@ -1,6 +1,7 @@
 // Angular
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
+import { environment } from 'environments/environment';
 
 // Projeto-Interno
 import { Pessoa } from 'app/core/model';
@@ -19,10 +20,12 @@ export class PessoaFiltro {
 @Injectable()
 export class PessoasService {
   // Atibutos
-  pessoasUrl = 'http://localhost:8080/pessoas';
+  pessoasUrl: string;
 
   // Construtor
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+    this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+  }
 
   // Metodo de pesquisa de pessoas com filtro ou sem filtro
   pesquisar(filtro: PessoaFiltro): Promise<any> {
