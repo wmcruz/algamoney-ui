@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './auth.guard';
+import { LogoutService } from './logout.service';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -39,7 +40,8 @@ export function authHttpServiceFactory (auth: AuthService, http: Http, options: 
       useFactory: authHttpServiceFactory,
       deps: [AuthService, Http, RequestOptions]
     },
-    AuthGuard
+    AuthGuard,
+    LogoutService
   ]
 })
 export class SegurancaModule { }
