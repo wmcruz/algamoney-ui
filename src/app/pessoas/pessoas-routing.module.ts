@@ -5,9 +5,9 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 const routes: Routes = [
-  { path: 'pessoas', component: PessoasPesquisaComponent },
-  { path: 'pessoas/:codigo', component: PessoaCadastroComponent },
-  { path: 'pessoas/nova', component: PessoaCadastroComponent }
+  { path: '', component: PessoasPesquisaComponent },
+  { path: ':codigo', component: PessoaCadastroComponent },
+  { path: 'nova', component: PessoaCadastroComponent }
 ];
 
 @NgModule({
