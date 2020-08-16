@@ -1,8 +1,9 @@
 // Angular
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import localePt from '@angular/common/locales/pt';
 
 // Projeto-Interno
 import { NavbarComponent } from './navbar/navbar.component';
@@ -19,6 +20,8 @@ import { ConfirmationService } from 'primeng/components/common/api';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper } from 'angular2-jwt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   imports: [
@@ -38,7 +41,7 @@ import { JwtHelper } from 'angular2-jwt';
     AuthService,
     JwtHelper,
     Title,
-    ConfirmationService, {provide: LOCALE_ID, useValue: 'pt-BR' }
+    ConfirmationService, {provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
 export class CoreModule { }
