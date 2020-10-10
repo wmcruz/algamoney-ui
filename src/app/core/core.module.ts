@@ -11,6 +11,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { LancamentoService } from 'app/lancamentos/lancamento.service';
 import { PessoasService } from 'app/pessoas/pessoas.service';
 import { DashboardService } from 'app/dashboard/dashboard.service';
+import { RelatoriosService } from 'app/relatorios/relatorios.service';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { AuthService } from 'app/seguranca/auth.service';
 import { CategoriaService } from 'app/categorias/categoria.service';
@@ -41,6 +42,7 @@ registerLocaleData(localePt);
     PessoasService,
     CategoriaService,
     DashboardService,
+    RelatoriosService,
     AuthService,
     JwtHelper,
     Title,
