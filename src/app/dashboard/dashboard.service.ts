@@ -25,7 +25,7 @@ export class DashboardService {
   lancamentosPorDia(): Promise<Array<any>> {
 
     return this.http.get(`${this.lancamentosUrl}/estatisticas/por-dia`)
-    .toPromise(
+    .toPromise()
     .then(response => {
       const dados = response.json();
       this.converterStringParaDatas(dados);
