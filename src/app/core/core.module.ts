@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { LancamentoService } from 'app/lancamentos/lancamento.service';
 import { PessoasService } from 'app/pessoas/pessoas.service';
+import { DashboardService } from 'app/dashboard/dashboard.service';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { AuthService } from 'app/seguranca/auth.service';
 import { CategoriaService } from 'app/categorias/categoria.service';
@@ -20,6 +21,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper } from 'angular2-jwt';
+import { DashboardComponent } from 'app/dashboard/dashboard/dashboard.component';
 
 registerLocaleData(localePt);
 
@@ -38,6 +40,7 @@ registerLocaleData(localePt);
     LancamentoService,
     PessoasService,
     CategoriaService,
+    DashboardService,
     AuthService,
     JwtHelper,
     Title,
