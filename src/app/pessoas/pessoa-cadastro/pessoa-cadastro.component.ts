@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 
 // Projeto-Interno
 import { PessoasService } from '../pessoas.service';
-import { Pessoa } from 'app/core/model';
+import { Contato, Pessoa } from 'app/core/model';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 // Terceiros
@@ -20,6 +20,8 @@ import { ToastyService } from 'ng2-toasty';
 export class PessoaCadastroComponent implements OnInit {
   // Atributos
   pessoa = new Pessoa();
+  exibindoFormularioContato = false;
+  contato: Contato;
 
   // Contrutor
   constructor(
@@ -38,6 +40,22 @@ export class PessoaCadastroComponent implements OnInit {
     if (codigoPessoa) {
       this.carregaPessoa(codigoPessoa);
     }
+  }
+
+  prepararNovoContato() {
+    this.exibindoFormularioContato = true;
+    this.contato = new Contato();
+  }
+
+  confirmarContato(frm: FormControl) {
+    this.pessoa.contatos.push(this.clonarContato(this.contato));
+    this.exibindoFormularioContato = false;
+
+    frm.reset();
+  }
+
+  clonarContato(contato: Contato): Contato {
+    return new Contato(contato.codigo, contato.nome, contato.email, contato.telefone);
   }
 
   salvar(form: FormControl) {
