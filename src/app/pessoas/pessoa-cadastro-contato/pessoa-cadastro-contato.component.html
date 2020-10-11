@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <button pButton label="Novo" icon="fa-plus" class="ui-button-secondary" type="button" (click)="prepararNovoContato()"></button>
+    <button pButton label="Novo" icon="fa fa-plus" class="ui-button-secondary" type="button" (click)="prepararNovoContato()"></button>
   </div>
 
   <div class="ui-g-12">
@@ -20,8 +20,8 @@
           <td>{{ contato.email }}</td>
           <td>{{ contato.telefone }}</td>
           <td class="col-acoes">
-            <button pButton icon="fa-pencil" type="button" pTooltip="Editar" tooltipPosition="top" (click)="prepararEdicaoContato(contato, rowIndex)"></button>
-            <button pButton icon="fa-trash" type="button" pTooltip="Excluir" tooltipPosition="top" (click)="removerContato(rowIndex)"></button>
+            <a pButton icon="fa fa-pencil" type="button" pTooltip="Editar" tooltipPosition="top" (click)="prepararEdicaoContato(contato, rowIndex)"></a>
+            <button pButton icon="fa fa-trash" type="button" pTooltip="Excluir" tooltipPosition="top" (click)="removerContato(rowIndex)"></button>
           </td>
         </tr>
       </ng-template>

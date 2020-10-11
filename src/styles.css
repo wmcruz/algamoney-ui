@@ -10,6 +10,10 @@ a {
   text-decoration: none;
 }
 
+a, button {
+  margin-right: 1px;
+}
+
 label {
   font-weight: bold;
 }
