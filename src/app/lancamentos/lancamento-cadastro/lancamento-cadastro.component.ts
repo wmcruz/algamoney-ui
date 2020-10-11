@@ -73,6 +73,8 @@ export class LancamentoCadastroComponent implements OnInit {
         nome: []
       }) ,
       observacao: [],
+      anexo: [],
+      urlAnexo: []
     });
   }
 
@@ -167,5 +169,28 @@ export class LancamentoCadastroComponent implements OnInit {
 
   antesUploadAnexo(event) {
     event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  }
+
+  aoTerminarUploadAnexo(event) {
+    const anexo = JSON.parse(event.xhr.response);
+
+    this.formulario.patchValue({
+      anexo: anexo.nome,
+      urlAnexo: (anexo.url as string).replace('\\', 'https://')
+    });
+  }
+
+  get nomeAnexo() {
+    const nome = this.formulario.get('anexo').value;
+
+    if (nome) {
+      return nome.substring(nome.indexOf('_') + 1, nome.length)
+    }
+
+    return '';
+  }
+
+  erroUpload(event) {
+    this.toastyService.error('Erro ao tentar enviar anexo!');
   }
 }
