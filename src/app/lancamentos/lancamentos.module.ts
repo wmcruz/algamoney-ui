@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 // Projeto-Interno
 import { SharedModule } from './../shared/shared.module';
@@ -40,7 +41,8 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     InputTextareaModule,
     SelectButtonModule,
     TooltipModule,
-    FileUploadModule
+    FileUploadModule,
+    ProgressSpinnerModule
   ],
   declarations: [
     LancamentoCadastroComponent,
