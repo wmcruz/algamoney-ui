@@ -55,6 +55,10 @@ export class PessoaCadastroComponent implements OnInit {
     this.contatoIndex = index;
   }
 
+  removerContato(index: number) {
+    this.pessoa.contatos.splice(index, 1);
+  }
+
   confirmarContato(frm: FormControl) {
     this.pessoa.contatos[this.contatoIndex] = this.clonarContato(this.contato);
     this.exibindoFormularioContato = false;
