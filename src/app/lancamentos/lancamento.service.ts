@@ -117,4 +117,8 @@ export class LancamentoService {
       }
     }
   }
+
+  urlUploadAnexo() {
+    return `${this.lancamentosUrl}/anexo`;
+  }
 }
