@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { PanelModule } from 'primeng/panel';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 // Projeto-Interno
 import { SharedModule } from './../shared/shared.module';
@@ -34,7 +35,8 @@ import { PessoaCadastroContatoComponent } from './pessoa-cadastro-contato/pessoa
     InputMaskModule,
     TooltipModule,
     PanelModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   declarations: [
     PessoaCadastroComponent,
