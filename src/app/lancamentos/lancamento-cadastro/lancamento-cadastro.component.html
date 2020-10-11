@@ -57,11 +57,10 @@
       <p-progressSpinner [style]="{ width: '25px', height: '25px' }" [hidden]="!uploadEmAndamento"></p-progressSpinner>
     </div>
 
-    <div class="ui-g-12 ui-fluid" dir="rtl"
-        *ngIf="formulario.get('anexo').value">
-        <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top"
-          [href]="formulario.get('urlAnexo').value">{{ nomeAnexo }}</a>
-      </div>
+    <div class="ui-g-12" dir="rtl" *ngIf="formulario.get('anexo').value">
+        <button pButton type="button" pTooltip="Remover Anexo" tooltipPosition="top" icon="fa-close" class="ui-button-danger" (click)="removerAnexo()"></button>
+        <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top" [href]="formulario.get('urlAnexo').value">{{ nomeAnexo }}</a>
+    </div>
 
     <div class="ui-g-12">
       <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid || uploadEmAndamento"></button>
