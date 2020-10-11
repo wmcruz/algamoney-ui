@@ -20,6 +20,9 @@ import { ToastyService } from 'ng2-toasty';
 export class PessoaCadastroComponent implements OnInit {
   // Atributos
   pessoa = new Pessoa();
+  estados: any[];
+  cidades: any[];
+  estadoSelecionado: number;
 
   // Contrutor
   constructor(
@@ -35,9 +38,27 @@ export class PessoaCadastroComponent implements OnInit {
     this.title.setTitle('Nova Pessoa');
     const codigoPessoa = this.route.snapshot.params['codigo'];
 
+    this.carregarEstados();
+
     if (codigoPessoa) {
       this.carregaPessoa(codigoPessoa);
     }
+  }
+
+  carregarEstados() {
+    this.pessoaService.listarEstados().then(
+      lista => {
+        this.estados = lista.map(uf => ({ label: uf.nome, value: uf.codigo}));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarCidades() {
+    this.pessoaService.listarCidades(this.estadoSelecionado).then(
+      lista => {
+        this.cidades = lista.map(c => ({ label: c.nome, value: c.codigo}));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: FormControl) {
@@ -73,6 +94,8 @@ export class PessoaCadastroComponent implements OnInit {
     this.pessoaService.buscarPorCodigo(codigo)
     .then(pessoa => {
       this.pessoa = pessoa;
+      this.estadoSelecionado = (this.pessoa.endereco.cidade) ?
+        this.pessoa.endereco.cidade.estado.codigo : null;
       this.atualizarTituloEdicao();
     })
     .catch(erro => { this.errorHandler.handle(erro)});
