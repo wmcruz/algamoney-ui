@@ -13,6 +13,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
 
 // Projeto-Interno
 import { SharedModule } from './../shared/shared.module';
@@ -38,7 +39,8 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     InputTextModule,
     InputTextareaModule,
     SelectButtonModule,
-    TooltipModule
+    TooltipModule,
+    FileUploadModule
   ],
   declarations: [
     LancamentoCadastroComponent,
