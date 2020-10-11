@@ -20,9 +20,9 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 // Terceiros
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastyModule } from 'ng2-toasty';
+import { GrowlModule } from 'primeng/growl';
+import { MessageService } from 'primeng/components/common/messageservice';
 import { JwtHelper } from 'angular2-jwt';
-import { DashboardComponent } from 'app/dashboard/dashboard/dashboard.component';
 
 registerLocaleData(localePt);
 
@@ -31,11 +31,11 @@ registerLocaleData(localePt);
     CommonModule,
     RouterModule,
      // Terceiros
-     ToastyModule.forRoot(),
+     GrowlModule,
      ConfirmDialogModule
   ],
   declarations: [ NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent ],
-  exports: [ NavbarComponent, ToastyModule, ConfirmDialogModule ],
+  exports: [ NavbarComponent, GrowlModule, ConfirmDialogModule ],
   providers: [
     ErrorHandlerService,
     LancamentoService,
@@ -46,7 +46,8 @@ registerLocaleData(localePt);
     AuthService,
     JwtHelper,
     Title,
-    ConfirmationService, {provide: LOCALE_ID, useValue: 'pt' }
+    ConfirmationService, {provide: LOCALE_ID, useValue: 'pt' },
+    MessageService
   ]
 })
 export class CoreModule { }
