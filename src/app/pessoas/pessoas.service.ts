@@ -4,7 +4,7 @@ import { URLSearchParams } from '@angular/http';
 import { environment } from 'environments/environment';
 
 // Projeto-Interno
-import { Pessoa } from 'app/core/model';
+import { Cidade, Estado, Pessoa } from 'app/core/model';
 
 // Terceiros
 import 'rxjs/add/operator/toPromise';
@@ -21,10 +21,14 @@ export class PessoaFiltro {
 export class PessoasService {
   // Atibutos
   pessoasUrl: string;
+  cidadesUrl: string;
+  estadosUrl: string;
 
   // Construtor
   constructor(private http: AuthHttp) {
     this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+    this.estadosUrl = `${environment.apiUrl}/estados`;
+    this.cidadesUrl = `${environment.apiUrl}/cidades`;
   }
 
   // Metodo de pesquisa de pessoas com filtro ou sem filtro
@@ -99,5 +103,20 @@ export class PessoasService {
     return this.http.get(`${this.pessoasUrl}/${codigo}`)
     .toPromise()
     .then(response => response.json() as Pessoa);
+  }
+
+  listarEstados(): Promise<Estado[]> {
+    return this.http.get(this.estadosUrl)
+    .toPromise()
+    .then(response => response.json());
+  }
+
+  listarCidades(estado): Promise<Cidade[]> {
+    const params = new URLSearchParams();
+    params.set('estado', estado);
+
+    return this.http.get(this.cidadesUrl, { search: params})
+    .toPromise()
+    .then(response => response.json());
   }
 }
