@@ -1,6 +1,6 @@
 // Angular
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 // Projeto-Interno
@@ -74,7 +74,10 @@ export class PessoasService {
 
   // serviço para mudar status da pessoa
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo)
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
   }
