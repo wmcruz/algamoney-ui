@@ -2,7 +2,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 
 // Projeto-Interno
 import { AppComponent } from './app.component';
@@ -18,7 +17,6 @@ import { SegurancaModule } from './seguranca/seguranca.module';
     // Angular
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
 
     // Projeto-Interno
     CoreModule,

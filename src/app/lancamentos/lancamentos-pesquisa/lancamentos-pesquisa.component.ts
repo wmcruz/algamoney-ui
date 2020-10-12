@@ -22,7 +22,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   lancamentos = [];
   filtro = new LancamentoFiltro();
   totalRegistros = 0;
-  @ViewChild('tabela') grid;
+  @ViewChild('tabela', { static: true }) grid;
 
   // construtor
   constructor(
