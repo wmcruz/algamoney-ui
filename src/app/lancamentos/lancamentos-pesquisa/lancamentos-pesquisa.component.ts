@@ -8,9 +8,7 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { AuthService } from 'app/seguranca/auth.service';
 
 // Terceiros
-import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
-import { MessageService } from 'primeng/components/common/messageservice';
-import { ConfirmationService } from 'primeng/components/common/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',

@@ -12,7 +12,7 @@ import { Lancamento } from 'app/core/model';
 import { LancamentoService } from '../lancamento.service';
 
 // Terceiros
-import { MessageService } from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamento-cadastro',

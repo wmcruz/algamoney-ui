@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { NotAuthenticatedError } from 'app/seguranca/money-http';
 
-import { MessageService } from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class ErrorHandlerService {

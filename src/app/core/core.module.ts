@@ -20,10 +20,9 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 import { MoneyHttp } from 'app/seguranca/money-http';
 
 // Terceiros
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { GrowlModule } from 'primeng/growl';
-import { MessageService } from 'primeng/components/common/messageservice';
+import { ToastModule } from 'primeng/toast';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 registerLocaleData(localePt);
@@ -34,11 +33,11 @@ registerLocaleData(localePt);
     HttpClientModule,
     RouterModule,
      // Terceiros
-     GrowlModule,
+     ToastModule,
      ConfirmDialogModule
   ],
   declarations: [ NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent ],
-  exports: [ NavbarComponent, GrowlModule, ConfirmDialogModule ],
+  exports: [ NavbarComponent, ToastModule, ConfirmDialogModule ],
   providers: [
     ErrorHandlerService,
     LancamentoService,

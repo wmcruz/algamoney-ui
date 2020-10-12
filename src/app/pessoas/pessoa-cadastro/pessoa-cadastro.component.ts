@@ -10,7 +10,7 @@ import { Contato, Pessoa } from 'app/core/model';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 // Terceiros
-import { MessageService } from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-pessoa-cadastro',

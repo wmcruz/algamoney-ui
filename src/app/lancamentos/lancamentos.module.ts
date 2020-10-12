@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { NgxCurrencyModule } from 'ngx-currency';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
@@ -34,7 +34,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     // Terceiros
     ButtonModule,
     CalendarModule,
-    CurrencyMaskModule,
+    NgxCurrencyModule,
     TableModule,
     DropdownModule,
     InputTextModule,
