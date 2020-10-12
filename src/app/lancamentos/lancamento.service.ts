@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
 // Terceiros
-import 'rxjs/add/operator/toPromise';
+
 import * as moment from 'moment';
 
 // Projeto-Interno

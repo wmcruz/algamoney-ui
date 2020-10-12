@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 import { Cidade, Estado, Pessoa } from 'app/core/model';
 
 // Terceiros
-import 'rxjs/add/operator/toPromise';
+
 import { MoneyHttp } from 'app/seguranca/money-http';
 
 // Classe de Filtro para pessoa
