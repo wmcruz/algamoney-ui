@@ -24,7 +24,7 @@
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/nova-ligth/theme.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
@@ -87,7 +87,7 @@
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/primeng/resources/themes/nova-ligth/theme.css",
+              "node_modules/primeng/resources/themes/omega/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
@@ -144,6 +144,6 @@
     }
   },
   "cli": {
-    "analytics": "eb22ab61-d758-47cd-8435-687b21e4cc7a"
+    "analytics": false
   }
 }
