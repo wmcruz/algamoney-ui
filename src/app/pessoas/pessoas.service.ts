@@ -1,6 +1,6 @@
 // Angular
 import { Injectable } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 // Projeto-Interno
@@ -8,7 +8,7 @@ import { Cidade, Estado, Pessoa } from 'app/core/model';
 
 // Terceiros
 import 'rxjs/add/operator/toPromise';
-import { AuthHttp } from 'angular2-jwt';
+import { MoneyHttp } from 'app/seguranca/money-http';
 
 // Classe de Filtro para pessoa
 export class PessoaFiltro {
@@ -25,7 +25,7 @@ export class PessoasService {
   estadosUrl: string;
 
   // Construtor
-  constructor(private http: AuthHttp) {
+  constructor(private http: MoneyHttp) {
     this.pessoasUrl = `${environment.apiUrl}/pessoas`;
     this.estadosUrl = `${environment.apiUrl}/estados`;
     this.cidadesUrl = `${environment.apiUrl}/cidades`;
@@ -33,24 +33,25 @@ export class PessoasService {
 
   // Metodo de pesquisa de pessoas com filtro ou sem filtro
   pesquisar(filtro: PessoaFiltro): Promise<any> {
-    const params = new URLSearchParams();
-
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    let params = new HttpParams({
+      fromObject: {
+        page: filtro.pagina.toString(),
+        size: filtro.itensPorPagina.toString()
+      }
+    });
 
     if (filtro.nome) {
-      params.set('nome', filtro.nome);
+      params = params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoasUrl}`, { search: params })
+    return this.http.get<any>(`${this.pessoasUrl}`, { params })
       .toPromise()
       .then(response => {
-        const responseJson  = response.json();
-        const pessoas = responseJson.content;
+        const pessoas = response.content;
 
         const resultado = {
           pessoas,
-          total: responseJson.totalElements
+          total: response.totalElements
         };
 
         return resultado;
@@ -59,9 +60,9 @@ export class PessoasService {
 
   // Metodo para listar todas as pessoas
   listarTodas(): Promise<any> {
-    return this.http.get(this.pessoasUrl)
+    return this.http.get<any>(this.pessoasUrl)
       .toPromise()
-      .then(response => response.json().content);
+      .then(response => response.content);
   }
 
   // serviço para excluir pessoa
@@ -80,9 +81,8 @@ export class PessoasService {
 
   // serviço responsável por adicionar uma nova pessoa
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
-    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa))
-    .toPromise()
-    .then(response => response.json());
+    return this.http.post<Pessoa>(this.pessoasUrl, pessoa)
+    .toPromise();
   }
 
   /**
@@ -90,9 +90,8 @@ export class PessoasService {
    * @param pessoa
    */
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, JSON.stringify(pessoa))
-    .toPromise()
-    .then(response => response.json() as Pessoa)
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa)
+    .toPromise();
   }
 
   /**
@@ -100,23 +99,19 @@ export class PessoasService {
    * @param codigo
    */
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
-    return this.http.get(`${this.pessoasUrl}/${codigo}`)
-    .toPromise()
-    .then(response => response.json() as Pessoa);
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`)
+    .toPromise();
   }
 
   listarEstados(): Promise<Estado[]> {
-    return this.http.get(this.estadosUrl)
-    .toPromise()
-    .then(response => response.json());
+    return this.http.get<Estado[]>(this.estadosUrl)
+    .toPromise();
   }
 
   listarCidades(estado): Promise<Cidade[]> {
-    const params = new URLSearchParams();
-    params.set('estado', estado);
+    const params = new HttpParams().append('estado', estado);
 
-    return this.http.get(this.cidadesUrl, { search: params})
-    .toPromise()
-    .then(response => response.json());
+    return this.http.get<Cidade[]>(this.cidadesUrl, { params })
+    .toPromise();
   }
 }

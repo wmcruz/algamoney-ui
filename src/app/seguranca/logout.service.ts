@@ -4,9 +4,7 @@ import { environment } from 'environments/environment';
 
 // Projeto-Interno
 import { AuthService } from './auth.service';
-
-// Terceiros
-import { AuthHttp } from 'angular2-jwt';
+import { MoneyHttp } from './money-http';
 
 @Injectable()
 export class LogoutService {
@@ -14,7 +12,7 @@ export class LogoutService {
   tokenRevokeUrl: string;
 
   constructor(
-    private http: AuthHttp,
+    private http: MoneyHttp,
     private auth: AuthService
     ) {
       this.tokenRevokeUrl = `${environment.apiUrl}/tokens/revoke`;

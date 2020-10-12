@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Http, RequestOptions } from '@angular/http';
 
-import { MoneyHttp } from './money-http';
-import { AuthService } from './auth.service';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './auth.guard';
@@ -12,15 +10,11 @@ import { LogoutService } from './logout.service';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'environments/environment';
 
-export function authHttpServiceFactory (auth: AuthService, http: Http, options: RequestOptions) {
-  const config = new AuthConfig({
-    globalHeaders: [
-      { 'Content-Type': 'application/json'}
-    ]
-  });
-  return new MoneyHttp(auth, config, http, options);
+export function tokenGetter() {
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -28,6 +22,13 @@ export function authHttpServiceFactory (auth: AuthService, http: Http, options: 
     CommonModule,
     FormsModule,
 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: environment.tokenWhitelistedDomains,
+        blacklistedRoutes: environment.tokenBlackliestedRoutes
+      }
+    }),
     InputTextModule,
     ButtonModule,
 
@@ -35,11 +36,6 @@ export function authHttpServiceFactory (auth: AuthService, http: Http, options: 
   ],
   declarations: [LoginFormComponent],
   providers: [
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [AuthService, Http, RequestOptions]
-    },
     AuthGuard,
     LogoutService
   ]
